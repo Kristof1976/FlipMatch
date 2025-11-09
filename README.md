@@ -7,7 +7,7 @@ This FlipMatch game was created as part of JavaScript programming exercises, sho
 
 ## 🖼️ Emoji Licentie
 
-De emoji’s gebruikt in deze game zijn afkomstig van **Twemoji** (Twitter) en **OpenMoji**.
+De emoji's gebruikt in deze game zijn afkomstig van **Twemoji** (Twitter) en **OpenMoji**.
 
 - Twemoji valt onder de **CC BY-SA 4.0-licentie**. Je mag deze gratis gebruiken, kopiëren en aanpassen, ook voor commercieel gebruik, **mits** je de bron vermeldt en eventuele afgeleide werken onder dezelfde licentie beschikbaar stelt. Meer info: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - OpenMoji valt onder de **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)** licentie. Meer info: [openmoji.org/license](https://openmoji.org/license/)
@@ -15,6 +15,30 @@ De emoji’s gebruikt in deze game zijn afkomstig van **Twemoji** (Twitter) en *
 Bronvermelding:
 - Twemoji (Twitter), CC BY-SA 4.0
 - OpenMoji, CC BY-SA 4.0
+
+## 📜 License & Credits
+
+### 💻 Code & Concept
+**FlipMatch © 2025 Kristof Hubin**  
+
+All source code, game logic, and original design elements are licensed under the  
+**[Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)**.
+
+**This means:**
+- ✅ You may view, study, and learn from the code
+- ✅ You may use it for personal or educational purposes
+- ✅ You may modify and adapt for non-commercial projects
+- ❌ Commercial use or redistribution without permission is **prohibited**
+- ❌ You must provide attribution to the original author
+
+See the [LICENSE](LICENSE) file for full details.
+
+### 🎨 Emoji Assets
+The emoji images used in FlipMatch are sourced from:
+- **Twemoji** (Twitter) – [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- **OpenMoji** – [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+When using these emoji assets, you must comply with their respective CC BY-SA 4.0 license terms, including attribution and share-alike requirements.
 
 ## 📞 Contact
 
