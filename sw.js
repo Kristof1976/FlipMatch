@@ -1,4 +1,4 @@
-const CACHE_NAME = 'flipmatch-v5'; //bij elke update versienummer verhogen voor update te triggeren
+const CACHE_NAME = 'flipmatch-v5.1'; //bij elke update versienummer verhogen voor update te triggeren
 const BASE_PATH = '/FlipMatch/';
 const urlsToCache = [
   BASE_PATH,
