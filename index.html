@@ -81,6 +81,27 @@
                 <span class="stat-label">Grid:</span>
                 <span id="grid-size" class="stat-value">2×2</span>
             </div>
+            <div class="stat" id="streak-stat" style="display: none;">
+                <span class="stat-label">Streak:</span>
+                <span id="streak-value" class="stat-value">
+                    <span class="streak-indicator">0🔥</span>
+                </span>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements-section" aria-label="Achievements">
+            <button class="achievements-toggle" id="achievements-toggle" aria-expanded="false">
+                <span class="achievements-title">
+                    🏆 Achievements <span id="achievement-progress" style="font-size: 0.85rem; color: var(--muted);">(0/12)</span>
+                </span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div id="achievements-content" class="achievements-content hidden">
+                <div id="achievements-grid" class="achievements-grid">
+                    <!-- Achievements will be rendered here -->
+                </div>
+            </div>
         </section>
 
         <section class="controls" aria-label="Spel besturing">
@@ -90,9 +111,11 @@
                                     <option value="animals">Dieren</option>
                                 </select>
                                 <button id="start" class="btn btn-primary">Start Level</button>
-                                <button id="reset" class="btn">New Game</button>
-                                <button id="continue" class="btn" style="display: none;">Continue game</button>
-                                <button id="stop" class="btn">Stop Game</button>
+                                <button id="continue" class="btn btn-secondary" style="display: none;">Continue</button>
+                        </div>
+                        <div class="buttons-secondary">
+                                <button id="reset" class="btn btn-secondary">New Game</button>
+                                <button id="stop" class="btn btn-danger">Stop</button>
                         </div>
         </section>
 

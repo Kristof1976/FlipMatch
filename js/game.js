@@ -11,6 +11,7 @@ export default class Game {
     this.locked = false;
     this.isPlaying = false;
     this.onLevelComplete = null; // callback voor level completion
+    this.onMatch = null; // callback voor matches
 
     // bind UI card clicks
     this.ui.bindCardClick(this.handleCardClick.bind(this));
@@ -52,6 +53,14 @@ export default class Game {
         
         this.ui.updateCardElement(a.index, a.card);
         this.ui.updateCardElement(b.index, b.card);
+        
+        // Trigger match callback with card elements
+        if (this.onMatch) {
+          const cardEl1 = document.querySelector(`[data-index='${a.index}']`);
+          const cardEl2 = document.querySelector(`[data-index='${b.index}']`);
+          this.onMatch(cardEl1, cardEl2);
+        }
+        
         this.flipped = [];
         this.locked = false;
 

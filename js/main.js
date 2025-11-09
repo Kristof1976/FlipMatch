@@ -2,6 +2,8 @@
 import UI from "./ui.js";
 import Game from "./game.js";
 import GameManager from "./gameManager.js";
+import Effects from "./effects.js";
+import AchievementManager from "./achievements.js";
 
 
 // Thema-afbeeldingen
@@ -38,7 +40,15 @@ function getThemeImages() {
 
 const ui = new UI("#app");
 const gameManager = new GameManager();
+const effects = new Effects();
+const achievementManager = new AchievementManager();
 const game = new Game(ui, getThemeImages, gameManager);
+
+// Set up achievement callback
+achievementManager.onAchievementUnlocked = (achievement) => {
+  ui.showAchievementNotification(achievement);
+  updateAchievementsUI();
+};
 
 // DOM controls
 const themeSelect = document.getElementById("theme-select");
@@ -46,11 +56,23 @@ const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
 const continueBtn = document.getElementById("continue");
 const stopBtn = document.getElementById("stop");
+const achievementsToggle = document.getElementById("achievements-toggle");
+const achievementsContent = document.getElementById("achievements-content");
+
+// Toggle achievements section
+if (achievementsToggle && achievementsContent) {
+  achievementsToggle.addEventListener("click", () => {
+    const isExpanded = achievementsToggle.getAttribute("aria-expanded") === "true";
+    achievementsToggle.setAttribute("aria-expanded", !isExpanded);
+    achievementsContent.classList.toggle("hidden");
+  });
+}
 
 // Stats are now managed by UI class
 
 // Initialize UI
 updateStatsUI();
+updateAchievementsUI();
 checkContinueOption();
 
 // Thema selecteren
@@ -67,8 +89,7 @@ stopBtn.addEventListener("click", () => {
   // Stop het spel: zet isPlaying op false, vergrendel het bord
   game.endGame();
   updateButtonStates();
-  // Optioneel: toon een melding dat het spel gestopt is
-  alert("Spel gestopt. Je kunt een nieuw level starten of verder gaan.");
+  alert("Game stopped. You can start a new level or continue.");
 });
 startBtn.addEventListener("click", () => {
   const config = gameManager.getCurrentLevelConfig();
@@ -77,9 +98,11 @@ startBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  if (confirm("Nieuw spel starten? Je huidige voortgang gaat verloren.")) {
+  if (confirm("Start a new game? Your current progress will be lost.")) {
     gameManager.resetGame();
+    achievementManager.reset();
     updateStatsUI();
+    updateAchievementsUI();
     checkContinueOption();
     // Auto-start het eerste level
     const config = gameManager.getCurrentLevelConfig();
@@ -96,6 +119,12 @@ continueBtn.addEventListener("click", () => {
 
 // Game event handlers
 game.onLevelComplete = (levelStats) => {
+  // Check achievements
+  const newAchievements = achievementManager.checkAchievements(levelStats);
+  
+  // Show level complete with celebration
+  effects.levelComplete();
+  
   ui.showLevelComplete(levelStats, () => {
     if (gameManager.canAdvanceLevel()) {
       gameManager.advanceLevel();
@@ -110,13 +139,43 @@ game.onLevelComplete = (levelStats) => {
   });
 };
 
+// Add match callback to game
+game.onMatch = (cardElement1, cardElement2) => {
+  effects.perfectMatch(cardElement1, cardElement2);
+  
+  // Check for streak combo
+  const stats = gameManager.getStats();
+  if (stats.streak >= 3) {
+    effects.showComboText(stats.streak, document.getElementById('app'));
+  }
+  
+  updateStatsUI();
+  
+  // Check achievements after each match
+  const currentStats = {
+    ...gameManager.getStats(),
+    totalMatches: gameManager.totalMatches,
+    maxStreak: gameManager.maxStreak,
+    quickMatches: gameManager.quickMatches,
+    levelComplete: false
+  };
+  achievementManager.checkAchievements(currentStats);
+};
+
 function updateStatsUI() {
   const stats = gameManager.getStats();
   ui.updateStats(stats);
 }
 
+function updateAchievementsUI() {
+  const achievements = achievementManager.getAllAchievements();
+  const progress = achievementManager.getProgress();
+  ui.renderAchievements(achievements);
+  ui.updateAchievementProgress(progress.unlocked, progress.total);
+}
+
 function updateButtonStates() {
-  startBtn.textContent = "Herstart Level";
+  startBtn.textContent = "Restart Level";
   continueBtn.classList.add("hidden");
 }
 

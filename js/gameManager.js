@@ -6,8 +6,14 @@ export default class GameManager {
     this.score = 0;
     this.totalScore = 0;
     this.streak = 0;
+    this.maxStreak = 0;
     this.startTime = null;
     this.moves = 0;
+    this.mismatches = 0;
+    this.totalMatches = 0;
+    this.levelsCompletedInSession = 0;
+    this.quickMatches = 0;
+    this.lastMatchTime = null;
     this.loadProgress();
   }
 
@@ -36,6 +42,9 @@ export default class GameManager {
     this.startTime = Date.now();
     this.moves = 0;
     this.score = 0;
+    this.mismatches = 0;
+    this.quickMatches = 0;
+    this.lastMatchTime = null;
     
     const config = this.getCurrentLevelConfig();
     const totalCards = config.width * config.height;
@@ -68,11 +77,22 @@ export default class GameManager {
 
   recordMatch() {
     this.streak++;
+    this.maxStreak = Math.max(this.maxStreak, this.streak);
+    this.totalMatches++;
+    
+    // Track quick matches (within 10 seconds)
+    const now = Date.now();
+    if (this.lastMatchTime && (now - this.lastMatchTime) < 10000) {
+      this.quickMatches++;
+    }
+    this.lastMatchTime = now;
+    
     this.calculateScore();
   }
 
   recordMismatch() {
     this.streak = 0;
+    this.mismatches++;
   }
 
   calculateScore() {
@@ -97,14 +117,29 @@ export default class GameManager {
 
   completeLevel() {
     this.calculateScore();
+    this.levelsCompletedInSession++;
     this.saveProgress();
+    
+    const config = this.getCurrentLevelConfig();
+    const levelTime = Math.round((Date.now() - this.startTime) / 1000);
+    
     return {
       score: this.score,
       totalScore: this.totalScore,
       moves: this.moves,
-      time: Math.round((Date.now() - this.startTime) / 1000),
+      time: levelTime,
       level: this.currentLevel,
-      canAdvance: this.canAdvanceLevel()
+      canAdvance: this.canAdvanceLevel(),
+      // Achievement tracking stats
+      levelTime: levelTime,
+      levelComplete: true,
+      mismatches: this.mismatches,
+      maxStreak: this.maxStreak,
+      totalCards: config.width * config.height,
+      remainingMoves: this.getRemainingMoves(),
+      levelsCompletedInSession: this.levelsCompletedInSession,
+      quickMatches: this.quickMatches,
+      totalMatches: this.totalMatches
     };
   }
 
@@ -113,7 +148,12 @@ export default class GameManager {
     this.score = 0;
     this.totalScore = 0;
     this.streak = 0;
+    this.maxStreak = 0;
     this.moves = 0;
+    this.mismatches = 0;
+    this.totalMatches = 0;
+    this.levelsCompletedInSession = 0;
+    this.quickMatches = 0;
     this.saveProgress();
   }
 

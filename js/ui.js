@@ -10,6 +10,12 @@ export default class UI {
     this.totalScoreEl = document.querySelector("#total-score");
     this.movesCountEl = document.querySelector("#moves-count");
     this.gridSizeEl = document.querySelector("#grid-size");
+    this.streakStatEl = document.querySelector("#streak-stat");
+    this.streakValueEl = document.querySelector("#streak-value");
+
+    // achievement elements
+    this.achievementProgressEl = document.querySelector("#achievement-progress");
+    this.achievementsGridEl = document.querySelector("#achievements-grid");
 
     // overlay elements
     this.overlay = document.querySelector("#overlay");
@@ -213,11 +219,72 @@ export default class UI {
     this.movesCountEl.textContent = `${stats.moves}/${stats.maxMoves}`;
     this.gridSizeEl.textContent = stats.gridSize;
     
+    // Update streak display
+    if (stats.streak > 0) {
+      this.streakStatEl.style.display = 'block';
+      const streakIndicator = this.streakValueEl.querySelector('.streak-indicator');
+      if (streakIndicator) {
+        streakIndicator.textContent = `${stats.streak}🔥`;
+        if (stats.streak >= 5) {
+          streakIndicator.classList.add('high-streak');
+        } else {
+          streakIndicator.classList.remove('high-streak');
+        }
+      }
+    } else {
+      this.streakStatEl.style.display = 'none';
+    }
+    
     // Warning styling bij weinig moves
     if (stats.isWarning) {
       this.movesCountEl.classList.add('warning');
     } else {
       this.movesCountEl.classList.remove('warning');
     }
+  }
+
+  // Render achievements grid
+  renderAchievements(achievements) {
+    if (!this.achievementsGridEl) return;
+
+    this.achievementsGridEl.innerHTML = '';
+
+    achievements.forEach(achievement => {
+      const badge = document.createElement('div');
+      badge.className = `achievement-badge ${achievement.unlocked ? 'unlocked' : 'locked'}`;
+      badge.title = achievement.description;
+      
+      badge.innerHTML = `
+        <div class="badge-icon">${achievement.icon}</div>
+        <div class="badge-name">${achievement.name}</div>
+      `;
+
+      this.achievementsGridEl.appendChild(badge);
+    });
+  }
+
+  // Update achievement progress
+  updateAchievementProgress(unlocked, total) {
+    if (this.achievementProgressEl) {
+      this.achievementProgressEl.textContent = `(${unlocked}/${total})`;
+    }
+  }
+
+  // Show achievement notification
+  showAchievementNotification(achievement) {
+    const notification = document.createElement('div');
+    notification.className = 'achievement-notification';
+    notification.innerHTML = `
+      <div class="achievement-icon">${achievement.icon}</div>
+      <div class="achievement-title">Achievement Unlocked!</div>
+      <div class="achievement-desc"><strong>${achievement.name}</strong><br>${achievement.description}</div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.style.animation = 'slideInRight 0.5s ease-out reverse';
+      setTimeout(() => notification.remove(), 500);
+    }, 4000);
   }
 }

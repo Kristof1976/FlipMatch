@@ -26,6 +26,9 @@ Created by **Kristof1976** - Feel free to reach out for questions or feedback!
 
 # 🎮 FlipMatch - Progressive Challenge
 
+FlipMatch is een modern, responsive geheugenspel waarin je kaarten omdraait om paren te vinden.  
+Gebouwd met vanilla JavaScript, CSS en HTML — volledig los van het merk *Memory®* van Ravensburger.
+
 A modern, progressive web app (PWA) version of the classic card matching game built with vanilla JavaScript, featuring 11 challenging levels and a sophisticated scoring system.
 
 ## 🌐 Live Demo
@@ -209,6 +212,10 @@ This Memory Game was created as part of JavaScript programming exercises, showca
 ## 📞 Contact
 
 Created by **Kristof1976** - Feel free to reach out for questions or feedback!
+
+---
+
+**Disclaimer:** *FlipMatch is een onafhankelijke creatie en staat niet in verband met het merk *Memory®* van Ravensburger of andere gelijkaardige merken.*
 
 ---
 
