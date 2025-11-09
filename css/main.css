@@ -65,6 +65,70 @@ body {
     padding: 8px 0
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-btn {
+    margin-left: 16px;
+}
+
+.info-title {
+    margin-top: 0;
+}
+
+.info-subtitle {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.info-description {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.info-list {
+    text-align: left;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.info-credits {
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.info-link {
+    color: var(--primary);
+}
+
+.info-close-btn {
+    margin-top: 12px;
+}
+
+#streak-stat {
+    display: none;
+}
+
+#achievement-progress {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+#theme-select {
+    min-width: 120px;
+}
+
+#continue {
+    display: none;
+}
+
 .title {
     margin: 0;
     font-size: 1.6rem
