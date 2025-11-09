@@ -1,5 +1,5 @@
-const CACHE_NAME = 'memory-game-v4'; //bij elke update versienummer verhogen voor update te triggeren
-const BASE_PATH = '/Memory/';
+const CACHE_NAME = 'flipmatch-v5'; //bij elke update versienummer verhogen voor update te triggeren
+const BASE_PATH = '/FlipMatch/';
 const urlsToCache = [
   BASE_PATH,
   BASE_PATH + 'index.html',
@@ -11,6 +11,8 @@ const urlsToCache = [
   BASE_PATH + 'js/board.js',
   BASE_PATH + 'js/card.js',
   BASE_PATH + 'js/config.js',
+  BASE_PATH + 'js/effects.js',
+  BASE_PATH + 'js/achievements.js',
   BASE_PATH + 'manifest.json',
   // Emojis
   BASE_PATH + 'img/emojis/0.png',
