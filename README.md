@@ -1,6 +1,7 @@
+
 ## 🎓 About This Project
 
-This Memory Game was created as part of JavaScript programming exercises, showcasing:
+This FlipMatch game was created as part of JavaScript programming exercises, showcasing:
 // ...existing code...
 **Built with:** Vanilla JavaScript • No frameworks • Pure CSS3 • PWA features
 
@@ -22,13 +23,16 @@ Created by **Kristof1976** - Feel free to reach out for questions or feedback!
 ---
 
 **Enjoy the challenge! 🧠💪**
-# 🎮 Memory Game - Progressive Challenge
 
-A modern, progressive web app (PWA) version of the classic memory card matching game built with vanilla JavaScript, featuring 11 challenging levels and a sophisticated scoring system.
+# 🎮 FlipMatch - Progressive Challenge
+
+A modern, progressive web app (PWA) version of the classic card matching game built with vanilla JavaScript, featuring 11 challenging levels and a sophisticated scoring system.
 
 ## 🌐 Live Demo
 
-**Play Online or install for offline gaming:** https://kristof1976.github.io/Memory/
+
+**Play Online or install for offline gaming:** https://kristof1976.github.io/FlipMatch/
+
 
 The game is hosted on GitHub Pages and works on all devices - mobile, tablet, and desktop!
 
@@ -64,7 +68,7 @@ The game is hosted on GitHub Pages and works on all devices - mobile, tablet, an
 ## 📂 Project Structure
 
 ```
-memory/
+flipmatch/
 ├── index.html              # Main game page
 ├── manifest.json           # PWA manifest
 ├── sw.js                  # Service worker
@@ -80,7 +84,7 @@ memory/
 │   ├── ui.js              # DOM manipulation & rendering
 │   ├── config.js          # Game configuration & levels
 │   └── pwa.js             # PWA installation & updates
-├── img/                   # Game card images (32 unique images)
+├── img/                   # Game card images (themed images)
 ├── icons/                 # PWA app icons
 └── screenshots/           # App store screenshots
 ```

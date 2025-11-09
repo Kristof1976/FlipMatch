@@ -1,13 +1,13 @@
 {
-  "name": "Memory Game - Progressive Challenge",
-  "short_name": "Memory Game",
-  "description": "A challenging memory card matching game with 11 progressive levels",
-  "start_url": "/Memory/",
+  "name": "FlipMatch - Progressive Challenge",
+  "short_name": "FlipMatch",
+    "description": "A challenging card matching game with 11 progressive levels",
+  "start_url": "/FlipMatch/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#0ea5a4",
   "orientation": "any",
-  "scope": "/Memory/",
+    "scope": "/FlipMatch/",
   "lang": "en",
   "categories": ["games", "entertainment"],
   "icons": [
@@ -42,7 +42,7 @@
     {
       "name": "New Game",
       "short_name": "New Game",
-      "description": "Start a new memory game",
+        "description": "Start a new FlipMatch game",
       "url": "./index.html?action=new",
       "icons": [
         {
